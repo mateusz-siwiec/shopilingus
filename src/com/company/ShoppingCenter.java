@@ -2,26 +2,16 @@ package com.company;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShoppingCenter {
     private String name;
     private String address;
     private List<Shop> shops;
 
-    private int idGenerator = 0;
-
     public void addShop(Shop shop) {
         this.shops.add(shop);
     }
-
-   /* public Shop getShop(int shopId) {
-        for (Shop shop : shops) {
-            if (shop.getId() == shopId) {
-                return shop;
-            }
-        }
-        return null;
-    }*/
 
     public void updateShop(int shopId, Shop modifiedShop) {
         deleteShop(shopId);
@@ -38,13 +28,13 @@ public class ShoppingCenter {
         }
     }
 
-    /*
-    public List<Shop> findShopsByName(final String name){
+
+    public List<Shop> findShopsByName(String name){
         return shops.stream()
-                .filter(shop -> shop.name.equals(name))
+                .filter(shop -> shop.getName().equals(name))
                 .collect(Collectors.toList());
     }
-    */
+    /*
     public List<Shop> findByName(String name) {
         List<Shop> result = new LinkedList<Shop>();
         for (Shop shop : shops) {
@@ -53,11 +43,13 @@ public class ShoppingCenter {
             }
         }
         return result;
-    }
+    }*/
 
     public Shop findShopById(int id) {
         return shops.stream()
-                .filter(shop -> shop.getId() == id).findFirst().orElse(null);
+                .filter(shop -> shop.getId() == id)
+                .findFirst()
+                .orElse(null);
 
     }
 }
