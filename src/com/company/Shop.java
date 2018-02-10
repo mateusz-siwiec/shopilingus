@@ -155,5 +155,5 @@ public class Shop {
                 .findFirst()
                 .orElse(null);
     }
-    
+
 }

@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -57,11 +58,7 @@ public class ShoppingCenter {
     }
 
     public List<Shop> findAllShops() {
-        LinkedList allShops = new LinkedList<>();
-        for (Shop shop : shops) {
-            allShops.add(shop);
-        }
-        return allShops;
+        return shops;
     }
 
     public List<Product> getAllProducts() {
@@ -75,15 +72,15 @@ public class ShoppingCenter {
     }
 
     public List<Service> getAllServices() {
-        LinkedList<Service> allServices = new LinkedList();
+        LinkedList<Service> allServices = new LinkedList<>();
         for (Shop shop : shops) {
             allServices.addAll(shop.getServices());
         }
         return allServices;
     }
 
-    public List<String> getAllShopTypes() {
-        LinkedList<String> allShopTypes = new LinkedList<>();
+    public Set<String> getAllShopTypes() {
+        Set<String> allShopTypes = new HashSet<>();
         for (Shop shop : shops) {
             allShopTypes.addAll(shop.getType());
         }

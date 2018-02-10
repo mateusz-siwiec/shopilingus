@@ -6,26 +6,20 @@ public class Product {
     private double price;
     private String type;
     private String name;
-    private String size;
-    private double weight;
     private double tax;
 
-    public Product(double price, String type, String name, String size, double weight, double tax) {
+    public Product(double price, String type, String name, double tax) {
         this.id = nextId++;
         this.price = price;
         this.type = type;
         this.name = name;
-        this.size = size;
-        this.weight = weight;
         this.tax = tax;
     }
 
     public Product(double price, String type, String name) {
-        this.id = nextId++;
-        this.price = price;
-        this.type = type;
-        this.name = name;
+        this(price, type, name, 0.23);
     }
+
 
     public int getId() {
         return id;
@@ -59,22 +53,6 @@ public class Product {
         this.name = name;
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
     public double getTax() {
         return tax;
     }
@@ -82,4 +60,13 @@ public class Product {
     public void setTax(double tax) {
         this.tax = tax;
     }
+
+    public String getFullName() {
+        return name;
+    }
+
+    public void print() {
+        System.out.println(getFullName());
+    }
+
 }
