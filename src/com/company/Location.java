@@ -1,6 +1,7 @@
 package com.company;
 
 public class Location {
+    private int id;
     private int floor;
     private int box;
 

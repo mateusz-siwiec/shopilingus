@@ -1,7 +1,8 @@
 package com.company;
 
 public class ProductDetails {
-   private Product product ;
+
+   private Product product;
    public  double quantity;
 
     public Product getProduct() {

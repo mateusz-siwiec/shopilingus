@@ -1,9 +1,10 @@
 package com.company;
 
 public class Employee {
-  private  String name;
-  private  String [] skills;
-  private  boolean isAvailable;
+    private int id;
+    private String name;
+    private String[] skills;
+    private boolean isAvailable;
 
     public Employee(String name, String[] skills, boolean isAvailable) {
         this.name = name;

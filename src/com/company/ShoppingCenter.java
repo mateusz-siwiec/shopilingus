@@ -2,12 +2,15 @@ package com.company;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ShoppingCenter {
+    private int id;
     private String name;
     private String address;
     private List<Shop> shops;
+
 
     public void addShop(Shop shop) {
         this.shops.add(shop);
@@ -29,7 +32,7 @@ public class ShoppingCenter {
     }
 
 
-    public List<Shop> findShopsByName(String name){
+    public List<Shop> findShopsByName(String name) {
         return shops.stream()
                 .filter(shop -> shop.getName().equals(name))
                 .collect(Collectors.toList());
@@ -51,5 +54,45 @@ public class ShoppingCenter {
                 .findFirst()
                 .orElse(null);
 
+    }
+
+    public List<Shop> findAllShops() {
+        LinkedList allShops = new LinkedList<>();
+        for (Shop shop : shops) {
+            allShops.add(shop);
+        }
+        return allShops;
+    }
+
+    public List<Product> getAllProducts() {
+        LinkedList<Product> allProducts = new LinkedList();
+        for (Shop shop : shops) {
+            for (ProductDetails product : shop.getProducts()) {
+                allProducts.add(product.getProduct());
+            }
+        }
+        return allProducts;
+    }
+
+    public List<Service> getAllServices() {
+        LinkedList<Service> allServices = new LinkedList();
+        for (Shop shop : shops) {
+            allServices.addAll(shop.getServices());
+        }
+        return allServices;
+    }
+
+    public List<String> getAllShopTypes() {
+        LinkedList<String> allShopTypes = new LinkedList<>();
+        for (Shop shop : shops) {
+            allShopTypes.addAll(shop.getType());
+        }
+        return allShopTypes;
+    }
+
+    public Set<String> getAllProductsTypes() {
+        return getAllProducts().stream()
+                .map(product -> product.getType())
+                .collect(Collectors.toSet());
     }
 }
