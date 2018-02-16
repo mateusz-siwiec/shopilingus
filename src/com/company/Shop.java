@@ -14,7 +14,7 @@ public class Shop {
     private List<ProductDetails> products;
     private List<Service> services;
     private List<Employee> employees;
-    private List<String> type;
+    private List<ShopType> types;
 
     public int getId() {
         return id;
@@ -56,26 +56,26 @@ public class Shop {
         this.employees = employees;
     }
 
-    public List<String> getType() {
-        return type;
+    public List<ShopType> getTypes() {
+        return types;
     }
 
-    public void setType(List<String> type) {
-        this.type = type;
+    public void setTypes(List<ShopType> types) {
+        this.types = types;
     }
 
-    public Shop(String name, int floor, int box, List<String> types) {
+    public Shop(String name, int floor, int box, List<ShopType> types) {
         this.id = Shop.nextId++;
         this.name = name;
         this.location = new Location(floor, box);
-        this.type = types;
+        this.types = types;
         this.products = new LinkedList<ProductDetails>();
         this.services = new LinkedList<Service>();
         this.employees = new LinkedList<Employee>();
     }
 
     public Shop(String name, int floor, int box) {
-        this(name, floor, box, new LinkedList<String>());
+        this(name, floor, box, new LinkedList<>());
     }
 
     public void hire(Employee employee) {
@@ -88,18 +88,14 @@ public class Shop {
 
 
     public void addProduct(Product product, double quantity) {
-        boolean isFound = false;
-        for (int i = 0; i < products.size(); i++) {
-            ProductDetails currentProduct = products.get(i);
-            if (currentProduct.getProduct().getId() == product.getId()) {
-                currentProduct.quantity += quantity;
-                isFound = true;
-            }
-        }
-        if(!isFound){
-            products.add(new ProductDetails(product , quantity));
+        ProductDetails currentProduct = findProductById(product.getId());
+        if (currentProduct != null) {
+            currentProduct.addQuantity(quantity);
+        } else {
+            products.add(new ProductDetails(product, quantity));
         }
     }
+
 
     public void deleteProduct(int productId) {
         ProductDetails toRemove = null;
@@ -108,14 +104,15 @@ public class Shop {
                 toRemove = product;
             }
         }
-        if(toRemove!=null){
+        if (toRemove != null) {
             products.remove(toRemove);
         }
     }
-    public ProductDetails findProductById(int productId){
 
-        for(ProductDetails productDetails : products){
-            if(productDetails.getProduct().getId() == productId) {
+    public ProductDetails findProductById(int productId) {
+
+        for (ProductDetails productDetails : products) {
+            if (productDetails.getProduct().getId() == productId) {
                 return productDetails;
             }
         }
@@ -127,7 +124,7 @@ public class Shop {
         ProductDetails productDetails = findProductById(productId);
         deleteProduct(productId);
         modifiedProduct.setId(productId);
-        addProduct(modifiedProduct , productDetails.quantity);
+        addProduct(modifiedProduct, productDetails.getQuantity());
     }
 
     public void addService(Service service) {
@@ -136,11 +133,11 @@ public class Shop {
 
     public void deleteService(int serviceId) {
 
-        for (Service service : services) {
-            if (service.getId() == serviceId) {
-                services.remove(service);
-            }
+        Service service = findServiceById(serviceId);
+        if (service != null) {
+            services.remove(service);
         }
+
     }
 
     public void updateService(int serviceId, Service modifiedService) {

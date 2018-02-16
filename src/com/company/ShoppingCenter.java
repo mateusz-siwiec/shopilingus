@@ -79,15 +79,15 @@ public class ShoppingCenter {
         return allServices;
     }
 
-    public Set<String> getAllShopTypes() {
-        Set<String> allShopTypes = new HashSet<>();
+    public Set<ShopType> getAllShopTypes() {
+        Set<ShopType> allShopTypes = new HashSet<>();
         for (Shop shop : shops) {
-            allShopTypes.addAll(shop.getType());
+            allShopTypes.addAll(shop.getTypes());
         }
         return allShopTypes;
     }
 
-    public Set<String> getAllProductsTypes() {
+    public Set<ProductType> getAllProductsTypes() {
         return getAllProducts().stream()
                 .map(product -> product.getType())
                 .collect(Collectors.toSet());

@@ -2,8 +2,8 @@ package com.company;
 
 public class ProductDetails {
 
-   private Product product;
-   public  double quantity;
+    private Product product;
+    private double quantity;
 
     public Product getProduct() {
         return product;
@@ -17,8 +17,8 @@ public class ProductDetails {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
+    public void addQuantity(double quantity) {
+        this.quantity += quantity;
     }
 
     public ProductDetails(Product product, double quantity) {

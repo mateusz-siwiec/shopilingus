@@ -5,11 +5,12 @@ public class Service {
     private String name;
     private double price;
     private int durationInMinutes;
-
-    public Service(String name, double price, int durationInMinutes) {
+    private ShopType types;
+    public Service(String name, double price, int durationInMinutes , ShopType shopTypes) {
         this.name = name;
         this.price = price;
         this.durationInMinutes = durationInMinutes;
+        this.types = shopTypes;
     }
 
     public int getId() {
