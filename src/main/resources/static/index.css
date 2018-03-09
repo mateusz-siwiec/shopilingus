@@ -1,0 +1,46 @@
+header {
+    display: flex;
+    line-height: 50px;
+    background-color: blueviolet;
+    justify-content: center;
+    
+}
+header img {
+    height: 50px;
+   
+}
+h3 {
+    margin: 0px;
+}
+footer {
+    text-align: center;
+    background-color:black;
+    color: white;
+}
+.menu ul li {
+    margin-top: 5px;
+}
+.shop-types {
+    display: inline-block;
+    margin-top:5px;
+
+}
+.range-prices {
+    margin-top: 5px;
+}
+.menu {
+    background-color: lightcyan;
+  
+}
+.main-container {
+ position: absolute;    
+ margin-left: 400px;
+ width: 73%;
+ background-color: rgb(75, 198, 255);
+}
+.results {
+    margin : 5px;
+}
+.products-params {
+    margin: 5px;
+}
